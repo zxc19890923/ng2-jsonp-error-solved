@@ -1,0 +1,19 @@
+代码如下：个人感觉没有问题，同样的代码在另一个项目中运行正常
+
+HttpService是自己封装的服务。
+var url = "http://localhost:3000/skill";
+var params = new URLSearchParams();
+params.set("callback", "JSONP_CALLBACK");
+this.httpService.jsonpGet(url, params).subscribe(res=> {
+  console.log(res);
+}, err=> {
+  console.log(err);
+});
+
+
+解决方法： 将参数设置成
+
+params.set("callback", "__ng_jsonp__.__req0.finished");
+这样就可以获取数据了
+
+http://stackoverflow.com/a/42...
